@@ -1,0 +1,54 @@
+<%- if scope['hddtemp::monitored_drives'].respond_to?('split')
+    #Split string of drives returned on comma
+    drives_tmp = scope['hddtemp::monitored_drives'].split(',')
+    drives_tmp = drives_tmp.grep(/sd/)
+    drives_tmp.map! { |drive| "/dev/#{drive}" }
+    drives_csv = drives_tmp.join(" ")
+  else
+    drives_csv = scope['hddtemp::monitored_drives'].to_s
+  end
+-%>
+# This file managed by puppet, do not edit.
+# Defaults for hddtemp
+
+# Run daemon
+<% if scope['hddtemp::manage_service'] == true %>
+RUN_DAEMON="true"
+<% else %>
+RUN_DAEMON="false"
+<% end %>
+
+# List of devices you want to use with hddtemp. If none specified,
+# hddtemp will probe standard devices.
+DISKS="<%= drives_csv %>"  # your hard drive here hda or hdb etc.
+
+# List of devices you want to use with hddtemp, but that would not be
+# probed for a working sensor.
+DISKS_NOPROBE=""
+
+# IP address of the interface on which you want hddtemp to be bound
+# on. If none specified, goes to 127.0.0.1. Use 0.0.0.0 to bind hddtemp
+# on all interfaces.
+INTERFACE="<%= scope['hddtemp::listen_addr'] %>"
+
+# Port number on which you want hddtemp to listen on. If none specified,
+# the port 7634 is used.
+PORT="<%= scope['hddtemp::listen_port'] %>"
+
+# Database file to use. If none specified, /etc/hddtemp.db is used.
+DATABASE="<%= scope['hddtemp::drive_db'] %>"
+
+# Separator to use between fields. The default separator is '|'.
+#SEPARATOR="|"
+
+# Logging period (in seconds) for the temperatures. If set to a value
+# different than 0, hddtemp will run as a daemon periodically logging
+# the temperatures through syslog
+RUN_SYSLOG="<%= scope['hddtemp::syslog_interval'] %>"  # 300 = every 5 minutes
+
+# Other options to pass to hddtemp
+<%- if scope['hddtemp::manage_service'] == true -%>
+OPTIONS="-d"
+<%- else -%>
+OPTIONS=""
+<%- end -%>
