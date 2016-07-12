@@ -23,6 +23,8 @@ The primary scope includes installing the package on the system and populating t
 
 At this time only sd* devices are correctly autoconfigured. IDE devices are **not supported** and must be manually configured.
 
+This module is based on [brentschler/hddtemp](https://forge.puppet.com/brentschler/hddtemp), but updated with acceptance tests and a few of my opinionated changes.
+
 ## Setup
 
 ### What hddtemp affects
