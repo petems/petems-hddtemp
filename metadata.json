@@ -1,6 +1,6 @@
 {
   "name": "petems-hddtemp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "petems",
   "summary": "Module for installing and managing HDDTemp (https://savannah.nongnu.org/projects/hddtemp/)",
   "license": "Apache-2.0",
@@ -14,30 +14,33 @@
     },
     {
       "name": "stahnma/epel",
-      "version_requirement":">= 0.0.6"
+      "version_requirement": ">= 0.0.6"
     }
   ],
-    "operatingsystem_support": [
+  "operatingsystem_support": [
     {
-    "operatingsystem": "RedHat",
-    "operatingsystemrelease": [
-      "5",
-      "6",
-      "7"
-    ]
-  }, {
-    "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [
-      "12.04",
-      "14.04",
-      "16.04"
-    ]
-  }, {
-    "operatingsystem": "CentOS",
-    "operatingsystemrelease": [
-      "5",
-      "6",
-      "7"
-    ]
-  }]
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04",
+        "16.04"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ]
 }
